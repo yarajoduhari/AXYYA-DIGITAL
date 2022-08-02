@@ -12,7 +12,7 @@ node
     }
  }  
  
-  stage('ExecuteSonarQubeReport') {
+  stage('SonarQube Report') {
      nodejs(nodeJSInstallationName: 'nodejs14') {
         sh 'npm run sonar'
     }
