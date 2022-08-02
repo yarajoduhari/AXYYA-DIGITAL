@@ -4,12 +4,8 @@ def call(String stageName){
      {
        sh "npm install"
      }
-  else if ("${stageName}" == "SonarQube Report")
+  else if ("${stageName}" == "docker hub")
      {
-       sh "npm run sonar"
-     }
-  else if ("${stageName}" == "RunNodeJsApp")
-     {
-       sh "npm start &"
+       sh "docker login -u yarajodudocker -p Prasad@123"
      }
 }
