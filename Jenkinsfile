@@ -12,20 +12,15 @@ node
     }
  }  
  
-  stage('SonarQube Report') {
-     nodejs(nodeJSInstallationName: 'nodejs14') {
-        sh 'npm run sonar'
+ stage ('docker build') {
+        sh "docker build -t yarajodudocker/node:$buildnumber ."
     }
-      
-        }	
- 
- stage('RunNodeJsApp')
- {
- //sh "./scripts/run.sh"
- nodejs(nodeJSInstallationName: 'nodejs14') {
-        sh 'npm start &'
+    stage ('docker hub') {
+        sh "docker login -u yarajodudocker -p Prasad@123"
     }
-} 
+    stage ('docker push') {
+        sh "docker push yarajodudocker/node:$buildnumber"
+    }
   stage ('kubernates login & deploy') {
         sshagent(['82f31a7e-6e27-44d5-a3df-695e00050d5d']) {
         sh "scp -o StrictHostKeyChecking=no nodejs.yml ubuntu@13.233.158.90:/home/ubuntu"
