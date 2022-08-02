@@ -8,8 +8,8 @@ def call(String stageName){
      {
        sh "npm run sonar"
      }
-  else if ("${stageName}" == "Upload Into Nexus")
+  else if ("${stageName}" == "RunNodeJsApp")
      {
-       sh "mvn clean deploy"
+       sh "npm start &"
      }
 }
