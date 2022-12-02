@@ -21,7 +21,7 @@ node
     stage ('docker push') {
         sh "docker push yarajodudocker/node:$buildnumber"
     }
-  stage ('kubernates login & deploy') {
+  stage ('kubernetes login & deploy') {
         sshagent(['82f31a7e-6e27-44d5-a3df-695e00050d5d']) {
         sh "scp -o StrictHostKeyChecking=no nodejs.yml ubuntu@13.233.158.90:/home/ubuntu"
         sh "ssh -o StrictHostKeyChecking=no ubuntu@13.233.158.90 kubectl apply -f nodejs.yml"
